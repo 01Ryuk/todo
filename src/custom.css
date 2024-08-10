@@ -1,0 +1,9 @@
+.todocontent{
+  height: 100vh;
+}
+
+.staticfooter{
+  position: sticky;
+  bottom: 0;
+
+}
