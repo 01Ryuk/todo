@@ -32,9 +32,22 @@ const Header = () => {
                   Home
                 </Link>
               </li>
+              
+                
+              
               <li class="nav-item">
                 <Link className="nav-link" to="/create">
                   Create Todo
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link className="nav-link" to="/signup">
+                  Sign up
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link className="nav-link" to="/login">
+                 Log in
                 </Link>
               </li>
             </ul>
