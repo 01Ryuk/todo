@@ -3,6 +3,7 @@ import Header from '../common/Header'
 import Footer from '../common/Footer'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { FaTrash } from "react-icons/fa6";
 
 const Home = () => {
   const [todos, setTodos] = useState([])
@@ -64,7 +65,7 @@ const deleteTodo = (id) => {
     className='btn btn-danger btn-sm shadow-lg'
     onClick={() => deleteTodo(todo.id)} 
   >
-    Delete
+    Delete <FaTrash />
   </button>
 </td>
       </tr>

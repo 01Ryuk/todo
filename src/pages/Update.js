@@ -1,20 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import axios from "axios";
+import { useLocation } from "react-router";
 
 
 const Update = () => {
+  const location = useLocation();
   const [todotitle, setTodoTitle] = useState();
   const [tododescription, setTodoDescription] = useState();
   const [expiry, setExpiry] = useState();
+  const updateid = location.pathname.split("/")[2];
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8000/api/edit/", { updateid })
+      .then((response) => {
+        if (response.data.status === 200) {
+          setTodoTitle(response.data.data.title);
+          setTodoDescription(response.data.data.description);
+          setExpiry(response.data.data.expiry);
+        } else {
+          alert("Failed to create todo!");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, [updateid]);
+
 
   const UpdateTodo = () => {
     let todoupdate = {
+      id: updateid,
      title : todotitle, 
       description : tododescription, 
       expiry : expiry, 
     };
+
+    
 
     axios
       .post("http://localhost:8000/api/update", todoupdate)
