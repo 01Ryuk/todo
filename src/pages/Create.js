@@ -4,15 +4,15 @@ import Footer from "../common/Footer";
 import axios from "axios";
 
 const Create = () => {
-  const [todotitle, setTodoTitle] = useState();
-  const [tododescription, setTodoDescription] = useState();
+  const [title, setTodoTitle] = useState();
+  const [description, setTodoDescription] = useState();
   const [expiry, setExpiry] = useState();
 
   const submitTodo = () => {
-    let submissionData = [todotitle, tododescription, expiry];
+    let submissionData = {title, description, expiry};
 
     axios
-      .post("http://localhost:3000/api/todo", submissionData)
+      .post("http://localhost:8000/api/create", submissionData)
       .then((response) => {
         if (response.data.status === 200) {
           alert("Todo created successfully!");
@@ -32,7 +32,7 @@ const Create = () => {
             </label>
             <input
               class="form-control"
-              value={todotitle}
+              value={title}
               onChange={(e) => setTodoTitle(e.target.value)}
             />
           </div>
@@ -42,7 +42,7 @@ const Create = () => {
             </label>
             <input
               class="form-control"
-              value={tododescription}
+              value={description}
               onChange={(e) => setTodoDescription(e.target.value)}
             />
           </div>
