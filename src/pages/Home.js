@@ -21,6 +21,24 @@ useEffect(() => {
       })
 }, []);
 
+
+
+const deleteTodo = (id) => {
+  axios
+      .post("http://localhost:8000/api/delete", {id})
+      .then((response) => {
+        if (response.data.status === 200) {
+          alert("Success");
+        } else {
+          alert("Failed to create todo!");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+  
+};
+
 // const deleteTodo = (id) =>{
 //   alert(id)
 // }
@@ -40,8 +58,15 @@ useEffect(() => {
         <td>{todo.title}</td>
         <td>{todo.expiry}</td>
         <td><Link to={"view/"+todo.id} className='btn btn-primary btn-sm shadow-lg'>View</Link></td>
-        <td><Link to={"edit/"+todo.id} className='btn btn-secondary btn-sm shadow-lg' >Edit</Link></td>
-        <td><button className='btn btn-danger btn-sm shadow-lg'>Delete</button></td>
+        <td><Link to={"update/"+todo.id} className='btn btn-secondary btn-sm shadow-lg' >Edit</Link></td>
+        <td>
+  <button
+    className='btn btn-danger btn-sm shadow-lg'
+    onClick={() => deleteTodo(todo.id)} 
+  >
+    Delete
+  </button>
+</td>
       </tr>
     ))}
 </tbody>

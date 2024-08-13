@@ -3,23 +3,32 @@ import Header from "../common/Header";
 import Footer from "../common/Footer";
 import axios from "axios";
 
+
 const Update = () => {
   const [todotitle, setTodoTitle] = useState();
   const [tododescription, setTodoDescription] = useState();
   const [expiry, setExpiry] = useState();
 
   const UpdateTodo = () => {
-    let todoupdate = [todotitle, tododescription, expiry];
+    let todoupdate = {
+     title : todotitle, 
+      description : tododescription, 
+      expiry : expiry, 
+    };
 
     axios
-      .post("http://localhost:8080/api/update", todoupdate)
+      .post("http://localhost:8000/api/update", todoupdate)
       .then((response) => {
         if (response.data.status === 200) {
           alert("Todo updated successfully");
         } else {
           alert("Failed to update Todo");
         }
-      });
+      })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      
   };
 
   return (
