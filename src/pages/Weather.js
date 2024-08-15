@@ -10,6 +10,7 @@ const Weather = () => {
   const [wind_kph, setWind_kph] = useState();
   const [text, setText] = useState();
   const [wimage, setWimage] = useState();
+  const [time, setTime] = useState();
   const getCityWeather = async () => {
     axios
       .get("https://api.weatherapi.com/v1/current.json?q="+city+"&key=968f7ff3207343d795c151307241508")
@@ -20,7 +21,8 @@ const Weather = () => {
           setHumidity(response.data.current.humidity);
           setWind_kph(response.data.current.wind_kph); 
           setText(response.data.current.condition.text);   
-          setWimage(response.data.current.condition.icon);     
+          setWimage(response.data.current.condition.icon);    
+          setTime(response.data.location.localtime); 
         } else {
           alert("Failed to get weather!");
         }
@@ -49,6 +51,7 @@ const Weather = () => {
       <p className='card-text'>Humidity: {humidity}%</p>
       <p className='card-text'>Wind Speed: {wind_kph} km/h</p>
       <p className='card-text'>Condition: {text}</p>
+      <p className='card-text'>Time:{time}</p>
     </div>
   </div>
   <Footer />
