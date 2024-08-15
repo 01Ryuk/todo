@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import axios from "axios";
+import { useNavigate } from 'react-router';
+
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const submit = () => {
+  const navigate = useNavigate();
+
+  async function submit () {
     let loginData = {email,password};
 
     axios
@@ -14,7 +18,8 @@ const Login = () => {
      .then((response) => {
         if (response.data.status === 200) {
           localStorage.setItem("token", response.data.authorisation.token);
-          alert("Login successfully!");
+          navigate("/");
+          // alert("Login successfully!");
         } else {
           alert("Login Failed!");
         }
