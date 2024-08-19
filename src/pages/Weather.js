@@ -39,21 +39,32 @@ const Weather = () => {
     <option value="Abuja">Abuja</option>
     <option value="Delta">Delta</option>
   </select> */}
-  <input type='text' className='form-control' value={city} onChange={(e) => (setCity(e.target.value))} />
-  <button onClick={getCityWeather}>Search</button>
 
-  <div className='card shadow col-md-6 bg-primary-subtle mx-auto'>
-    <div className='card-body'>
-      <h5 className='card-title'>Weather Information</h5>
-      <img src={wimage} /> 
-      <p className='card-text'>City: {city}</p>
-      <p className='card-text'>Temperature: {temp_c}°C</p>
-      <p className='card-text'>Humidity: {humidity}%</p>
-      <p className='card-text'>Wind Speed: {wind_kph} km/h</p>
-      <p className='card-text'>Condition: {text}</p>
-      <p className='card-text'>Time:{time}</p>
-    </div>
+  <div className='card shadow col-md-6 bg-primary-subtle mx-auto p-3'>
+  <div className='input-group mb-3'>
+    <input
+      type='text'
+      className='form-control'
+      placeholder='Please enter a location'
+      value={city}
+      onChange={(e) => setCity(e.target.value)}
+    />
+    <button className='btn btn-primary' onClick={getCityWeather}>
+      Search
+    </button>
   </div>
+  <div className='card-body'>
+    <h5 className='card-title'>Weather Information</h5>
+    <img src={wimage} alt="Weather Condition" className='img-fluid mb-3' />
+    <p className='card-text'>City: {city}</p>
+    <p className='card-text'>Temperature: {temp_c}°C</p>
+    <p className='card-text'>Humidity: {humidity}%</p>
+    <p className='card-text'>Wind Speed: {wind_kph} km/h</p>
+    <p className='card-text'>Condition: {text}</p>
+    <p className='card-text'>Date: {new Date(time).toLocaleDateString()}</p>
+    <p className='card-text'>Time: {new Date(time).toLocaleTimeString()}</p>
+  </div>
+</div>
   <Footer />
   
   </>
